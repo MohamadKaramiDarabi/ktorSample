@@ -5,6 +5,8 @@ val logback_version: String by project
 plugins {
     application
     kotlin("jvm") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
+
 }
 
 group = "com.example"
@@ -15,6 +17,14 @@ application {
 
 repositories {
     mavenCentral()
+}
+
+tasks{
+    shadowJar {
+        manifest {
+            attributes(Pair("Main-Class", "com.example.ApplicationKt"))
+        }
+    }
 }
 
 dependencies {
